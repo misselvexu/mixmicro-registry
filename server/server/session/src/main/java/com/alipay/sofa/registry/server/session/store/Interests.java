@@ -16,12 +16,12 @@
  */
 package com.alipay.sofa.registry.server.session.store;
 
-import com.alipay.sofa.registry.common.model.Tuple;
-import com.alipay.sofa.registry.common.model.dataserver.DatumVersion;
 import com.alipay.sofa.registry.common.model.store.Subscriber;
+import com.alipay.sofa.registry.server.session.registry.SessionRegistry.SelectSubscriber;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author shangyu.wh
@@ -33,17 +33,17 @@ public interface Interests extends DataManager<Subscriber, String, String> {
    * check subscribers interest dataInfoId version,very dataCenter dataInfoId version different if
    * return false else check return bigger version
    *
-   * @param dataCenter
-   * @param datumDataInfoId
-   * @param version
-   * @return
+   * @param dataCenter dataCenter
+   * @param datumDataInfoId datumDataInfoId
+   * @param version version
+   * @return InterestVersionCheck
    */
   InterestVersionCheck checkInterestVersion(
       String dataCenter, String datumDataInfoId, long version);
 
   Collection<Subscriber> getInterests(String datumDataInfoId);
 
-  Tuple<Map<String, DatumVersion>, List<Subscriber>> selectSubscribers(String dataCenter);
+  SelectSubscriber selectSubscribers(Set<String> dataCenters);
 
   Map<String, List<String>> filterIPs(String group, int limit);
 

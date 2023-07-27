@@ -31,7 +31,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class InterfaceAppsRaftRepository implements InterfaceAppsRepository {
   protected static final Logger LOG = LoggerFactory.getLogger(InterfaceAppsRaftRepository.class);
 
-  /** map: <interface, appNames> */
+  /** map: interface, appNames */
   protected final Map<String, InterfaceMapping> interfaceApps = new ConcurrentHashMap<>();
 
   @Override
@@ -53,6 +53,9 @@ public class InterfaceAppsRaftRepository implements InterfaceAppsRepository {
   public void renew(String interfaceName, String appName) {}
 
   @Override
+  public void startSynced() {}
+
+  @Override
   public void waitSynced() {}
 
   @Override
@@ -61,7 +64,15 @@ public class InterfaceAppsRaftRepository implements InterfaceAppsRepository {
   }
 
   @Override
-  public Map<String, InterfaceMapping> allServiceMapping() {
+  public Map<String, Map<String, InterfaceMapping>> allServiceMapping() {
     return null;
   }
+
+  @Override
+  public Set<String> dataCenters() {
+    return null;
+  }
+
+  @Override
+  public void setDataCenters(Set<String> dataCenters) {}
 }

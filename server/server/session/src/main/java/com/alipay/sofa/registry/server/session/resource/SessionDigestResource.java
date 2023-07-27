@@ -145,7 +145,7 @@ public class SessionDigestResource {
   @GET
   @Path("/metadata/allServiceMapping")
   @Produces(MediaType.APPLICATION_JSON)
-  public Map<String, InterfaceMapping> allServiceMapping() {
+  public Map<String, Map<String, InterfaceMapping>> allServiceMapping() {
     return interfaceAppsRepository.allServiceMapping();
   }
 
@@ -286,7 +286,6 @@ public class SessionDigestResource {
         countSub.o2, countPub.o2, countSubW.o2);
   }
 
-  /** return true mean push switch on */
   @GET
   @Path("pushSwitch")
   @Produces(MediaType.APPLICATION_JSON)
